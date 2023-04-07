@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>NaReader</title>
+    <script src="../dist/popup/input.js"></script>
+    <link rel="stylesheet" type="text/css" href="./popup.css" />
+  </head>
+
+  <body>
+    <p id="ex_name">NaReader</p>
+
+    <form id="settings" name="settings">
+      <div class="form_group">
+        <label for="settings_volume">Volume: </label>
+        <input id="settings_volume" name="settings_volume" type="text" />
+      </div>
+      <p class="label_comment">(min: 0, max: 10)</p>
+
+      <div class="form_group">
+        <label for="settings_rate">Rate: </label>
+        <input id="settings_rate" name="settings_rate" type="text" />
+      </div>
+      <p class="label_comment">(min: 0.1, max: 10)</p>
+
+      <div class="form_group">
+        <label for="settings_pitch">Pitch: </label>
+        <input id="settings_pitch" name="settings_pitch" type="text" />
+      </div>
+      <p class="label_comment">(min: 0, max: 2)</p>
+
+      <div class="form_bottom">
+        <button id="update_btn" type="button">更新</button>
+      </div>
+    </form>
+  </body>
+
+  <script src="../dist/popup/popup.js"></script>
+</html>
