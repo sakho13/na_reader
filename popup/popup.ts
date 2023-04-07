@@ -78,16 +78,22 @@ function init() {
     if (r.VOLUME) {
       const val = Number(r.VOLUME)
       volumeInput.value = String(!isNaN(val) ? val : 10)
+    } else {
+      volumeInput.value = "10"
     }
 
     if (r.RATE) {
       const val = Number(r.RATE)
       rateInput.value = String(!isNaN(val) ? val : 1)
+    } else {
+      rateInput.value = "1"
     }
 
     if (r.PITCH) {
       const val = Number(r.PITCH)
       pitchInput.value = String(!isNaN(val) ? val : 1)
+    } else {
+      pitchInput.value = "1"
     }
   })
 
