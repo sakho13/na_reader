@@ -7,6 +7,12 @@ type NovelInfo = {
   subtitle: string
 }
 
+type VoiceOption = {
+  rate: number
+  pitch: number
+  volume: number
+}
+
 function getNovelInfoFromUrl(): NovelInfo | null {
   const url = window.location.href
   const urlObj = new URL(url)
@@ -26,7 +32,6 @@ function getNovelInfoFromUrl(): NovelInfo | null {
   return null
 }
 
-
 class Speaker {
   private queue: string[] = []
   private current: string | null = ""
@@ -34,11 +39,7 @@ class Speaker {
   public initialized: boolean = false
   private speechSynthesizer: SpeechSynthesis = window.speechSynthesis
   private novelInfo: NovelInfo
-  private options: {
-    rate: number
-    pitch: number
-    volume: number
-  } = {
+  private options: VoiceOption = {
     rate: 1,
     pitch: 1,
     volume: 1,
@@ -56,9 +57,9 @@ class Speaker {
 
     const utterance = new SpeechSynthesisUtterance(this.current)
     this.fetchOptions()
+    utterance.volume = this.options.volume
     utterance.rate = this.options.rate
     utterance.pitch = this.options.pitch
-    utterance.volume = this.options.volume
 
     utterance.onend = () => {
       this.next()
@@ -151,7 +152,11 @@ class Speaker {
   }
 
   private fetchOptions() {
-    chrome.storage.local.get(["RATE", "PITCH", "VOLUME"], (r) => {
+    chrome.storage.local.get(["VOLUME", "RATE", "PITCH"], (r) => {
+      const volume = Number(r.VOLUME)
+      if (r.VOLUME && !isNaN(volume) && volume >= 0 && volume <= 1)
+        this.options.volume = volume
+
       const rate = Number(r.RATE)
       if (r.RATE && !isNaN(rate) && rate >= 0.1 && rate <= 10)
         this.options.rate = rate
@@ -159,10 +164,6 @@ class Speaker {
       const pitch = Number(r.PITCH)
       if (r.PITCH && !isNaN(pitch) && pitch >= 0 && pitch <= 2)
         this.options.pitch = pitch
-
-      const volume = Number(r.VOLUME)
-      if (r.VOLUME && !isNaN(volume) && volume >= 0 && volume <= 1)
-        this.options.volume = volume
     })
   }
 
