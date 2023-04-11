@@ -74,7 +74,7 @@ function init() {
   if (!pitchInput) return
 
   chrome.storage.local.get(SettingParams, (r) => {
-    console.log(r)
+    // console.log(r)
     if (r.VOLUME) {
       const val = Number(r.VOLUME)
       volumeInput.value = String(!isNaN(val) ? val : 10)
