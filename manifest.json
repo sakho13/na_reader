@@ -3,7 +3,7 @@
   "name": "NaReader",
   "version": "1.0.0",
   "description": "「小説家になろう」に投稿されている小説を読み上げる拡張機能です。(This extension is reading with voice the novels posted on Shosetsuka ni Narou)",
-  "permissions": ["activeTab", "storage"],
+  "permissions": ["storage"],
   "content_scripts": [
     {
       "matches": ["https://ncode.syosetu.com/*"],
