@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "NaReader",
+  "name": "NaReader-「小説家になろう」読み上げ",
   "version": "1.0.0",
   "description": "「小説家になろう」に投稿されている小説を読み上げる拡張機能です。(This extension is reading with voice the novels posted on Shosetsuka ni Narou)",
   "permissions": ["storage"],
@@ -16,7 +16,7 @@
       "48": "./icons/na_reader_icon.png",
       "128": "./icons/na_reader_icon_128.png"
     },
-    "default_title": "小説読み上げ",
+    "default_title": "小説読み上げ設定",
     "default_popup": "./popup/popup.html"
   },
   "icons": {
