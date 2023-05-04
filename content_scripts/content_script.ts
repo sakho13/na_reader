@@ -1,3 +1,5 @@
+import Dexie from "dexie"
+
 /**
  * URLとページから取得できる情報
  */
@@ -12,6 +14,17 @@ type VoiceOption = {
   pitch: number
   volume: number
 }
+
+type StoreRuby = {
+  /** PK */
+  id: number
+
+  novelId: string
+  word: string
+  ruby: string
+}
+
+const DB_NAME = "na_reader" as const
 
 function getNovelInfoFromUrl(): NovelInfo | null {
   const url = window.location.href
@@ -30,6 +43,50 @@ function getNovelInfoFromUrl(): NovelInfo | null {
     }
   }
   return null
+}
+
+class Dictionary {
+  private novelInfo: NovelInfo
+  private db: Dexie
+  private ruby: StoreRuby[] = []
+
+  constructor(novelInfo: NovelInfo) {
+    this.novelInfo = novelInfo
+    this.db = new Dexie(DB_NAME)
+  }
+
+  static async create(novelInfo: NovelInfo) {
+    const obj = new Dictionary(novelInfo)
+    await obj.initDB()
+
+    return obj
+  }
+
+  public async initDB() {
+    this.db.version(1).stores({
+      ruby: "++id, novelId, word, ruby",
+    })
+
+    const table = this.db.table<StoreRuby>("ruby")
+    this.ruby = await table
+      .where("novelId")
+      .equals(this.novelInfo.novelId)
+      .toArray()
+  }
+
+  /**
+   * ルビの追加
+   */
+  public addRuby(word: string, ruby: string) {
+    //
+  }
+
+  /**
+   * 小説に紐づくルビの一覧を取得
+   */
+  public getRubies(novelId: string) {
+    //
+  }
 }
 
 class Speaker {
