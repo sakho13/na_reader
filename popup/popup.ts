@@ -1,11 +1,5 @@
 const SettingParams = ["VOLUME", "RATE", "PITCH"]
 
-// type Settings = {
-//   rate: number
-//   pitch: number
-//   volume: number
-// }
-
 function getInputElem(id: string) {
   return document.querySelector<HTMLInputElement>(`#${id}`)
 }
