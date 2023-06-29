@@ -4,13 +4,17 @@ html {
 
 body {
   width: 160px;
-  margin: 20px 10px;
+  margin: 12px 8px;
+}
+
+form {
+  margin-top: 8px;
 }
 
 #ex_name {
   width: fit-content;
   margin: 0 auto;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-weight: bold;
   font-size: 22px;
 }
@@ -37,16 +41,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  margin-bottom: 8px;
+  margin-top: 4px;
+}
+
+.label_comment {
+  margin-left: 50px;
+  margin-top: 3px;
   margin-bottom: 4px;
 }
 
-#settings > .label_comment {
-  margin-left: 50px;
-  margin-top: 3px;
-  margin-bottom: 10px;
-}
-
-#update_btn {
+#update_btn,
+#theme_submit_btn,
+#theme_reset_btn {
   border-radius: 24px;
   border-style: solid;
   border-width: 1px;
@@ -54,7 +61,9 @@ body {
   background-color: #ffffff;
 }
 
-#update_btn:hover {
+#update_btn:hover,
+#theme_submit_btn:hover,
+#theme_reset_btn:hover {
   background: #f6f9fe;
   color: #174ea6;
   cursor: pointer;
