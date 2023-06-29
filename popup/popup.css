@@ -33,10 +33,11 @@ body {
   margin-bottom: 0;
 }
 
-#settings > .form_bottom {
+.form_bottom {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+  margin-bottom: 4px;
 }
 
 #settings > .label_comment {
@@ -78,4 +79,10 @@ body {
     0 8px 12px 6px rgb(60 64 67 / 15%);
   outline: none;
   border: 2px solid #4285f4;
+}
+
+.divider {
+  border-width: 0.5px;
+  border-style: solid;
+  border-color: #dadada;
 }
