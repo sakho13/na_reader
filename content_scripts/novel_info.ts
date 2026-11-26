@@ -31,3 +31,12 @@ export function getNovelInfo(url: string, doc: Document): NovelInfo | null {
     subtitle: subtitle.textContent?.trim() || `${novelId}_${episodeNo}`,
   }
 }
+
+/**
+ * 本文（前書き・後書きを除く）の要素を取得する
+ */
+export function findBody(doc: Document): Element | null {
+  const body = doc.querySelector(SELECTORS.body)
+  if (!body) console.warn(`[NaReader] 本文が見つかりません: ${SELECTORS.body}`)
+  return body
+}

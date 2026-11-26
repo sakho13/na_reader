@@ -1,4 +1,4 @@
-import { getNovelInfo } from "./novel_info"
+import { findBody, getNovelInfo } from "./novel_info"
 import { buildQueue } from "./queue"
 import { SELECTORS } from "./selectors"
 import { Speaker } from "./speaker"
@@ -12,11 +12,8 @@ export function load(doc: Document, url: string): HTMLButtonElement | null {
   const novelInfo = getNovelInfo(url, doc)
   if (novelInfo === null) return null
 
-  const body = doc.querySelector(SELECTORS.body)
-  if (!body) {
-    console.warn(`[NaReader] 本文が見つかりません: ${SELECTORS.body}`)
-    return null
-  }
+  const body = findBody(doc)
+  if (!body) return null
   const speaker = new Speaker(buildQueue(body.children), novelInfo)
 
   const button = doc.createElement("button")
@@ -37,9 +34,10 @@ export function load(doc: Document, url: string): HTMLButtonElement | null {
 
   button.addEventListener("click", toggleSpeak)
 
+  // 見出しの中に入れるとサイト側の見出しのスタイルを受けるため、直後に置く
   const targetElement = doc.querySelector(SELECTORS.subtitle)
   if (!targetElement) return null
-  targetElement.appendChild(button)
+  targetElement.after(button)
 
   return button
 }

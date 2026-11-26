@@ -1,0 +1,35 @@
+<!doctype html>
+<!--
+  前書き・後書きがある連載作品の本文ページの構造を再現したもの。
+  2026-11 時点の実ページの DOM 構造に合わせている。本文はダミー。
+  実ページと同じく <p> の中には余計な空白・改行を入れないこと（Prettier の対象外にしている）。
+-->
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>テスト作品 - 第二話　つづき</title>
+</head>
+<body>
+<div class="js-customlayout1 p-novelmain">
+<article class="p-novel">
+<div class="p-novel__number js-siori">2/3</div>
+<h1 class="p-novel__title p-novel__title--rensai">第二話　つづき</h1>
+
+<div class="p-novel__body">
+<div class="js-novel-text p-novel__text p-novel__text--preface">
+<p id="Lp1">前書きの文章です。</p>
+</div>
+
+<div class="js-novel-text p-novel__text">
+<p id="L1">　本文の一行目です。</p>
+<p id="L2">　本文の二行目です。</p>
+</div>
+
+<div class="js-novel-text p-novel__text p-novel__text--afterword">
+<p id="La1">後書きの文章です。</p>
+</div>
+</div><!-- /.p-novel__body -->
+</article><!-- /.p-novel -->
+</div>
+</body>
+</html>
