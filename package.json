@@ -9,7 +9,9 @@
     "typecheck": "tsc",
     "prebuild": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
     "build": "esbuild content_scripts/content_script.ts popup/popup.ts --bundle --format=iife --target=chrome120 --outbase=. --outdir=dist --sourcemap",
-    "pack": "7z a na_reader.zip ./dist/ ./manifest.json ./package.json ./node_modules/ ./icons/ ./images/ ./package-lock.json ./README.md ./popup/ ./content_scripts/ ./docs/"
+    "build:release": "npm run prebuild && esbuild content_scripts/content_script.ts popup/popup.ts --bundle --format=iife --target=chrome120 --outbase=. --outdir=dist --minify",
+    "prepack": "node -e \"require('fs').rmSync('na_reader.zip',{force:true})\" && npm run build:release",
+    "pack": "7z a na_reader.zip manifest.json dist icons popup/popup.html popup/popup.css content_scripts/content_script.css"
   },
   "type": "module",
   "keywords": [],
